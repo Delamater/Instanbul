@@ -5,7 +5,7 @@
   "main": "test.js",
   "scripts": {
     "test": "test.js",
-    "coverage": "istanbul cover C:\\WorkingFolder\\Istanbul\\Examples\\Polish\\test.js --include-all-sources --root *.*",
+    "coverage": "istanbul cover test.js --include-all-sources --root ",
     "showcoverage": "start coverage/lcov-report/index.html"
   },
   "keywords": [],
