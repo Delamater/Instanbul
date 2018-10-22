@@ -3,8 +3,6 @@ var x = myFunc1(1);
 var y = myFunc1(2);
 var z = myFunc1(10);
 
-return;
-
 
 function getNumber(param1, param2)
 {
