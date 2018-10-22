@@ -1,7 +1,7 @@
 var n = getNumber(2,5);
-var y = myFunc1(1);
+var x = myFunc1(1);
 var y = myFunc1(2);
-var y = myFunc1(10);
+var z = myFunc1(10);
 
 return;
 
