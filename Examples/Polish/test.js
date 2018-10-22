@@ -1,13 +1,27 @@
-var x = 30;
-if (x == 1) 
+var n = getNumber(2,5);
+var y = myFunc1(1);
+var y = myFunc1(2);
+var y = myFunc1(10);
+
+return;
+
+
+function getNumber(param1, param2)
 {
-    x = 1;
+    return param1 * param2;
 }
-else if(x == 2)
+function myFunc1(x)
 {
-    x = 2;
-}
-else if(x == 30)
-{
-    x = 3;
+    switch (x)
+    {
+        case 1:
+            return 1;
+        case 2:
+            return 2;
+        case 3:
+            return 3;
+        default: 
+            return 0;
+    }
+    return x;
 }
