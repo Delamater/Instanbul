@@ -8,6 +8,236 @@
  * Documentation: https://github.com/gotwarlost/istanbul/blob/master/coverage.json.md
  *************************************************************************/
 
+
+
+//WriteJson("someJson",false,sampleObject);
+//var finalJson = "{";
+//var coverageJson = makeHeader("somefile.json","c:\somePath\somefile.json");
+//console.log(coverageJson);
+// WriteJson("coverage", true, coverageJson);
+//console.log(makeJsonObject("ZINSTANBUL", "C:\WorkingFolder\X3\Istanbul\Examples\Polish\ZINSTANBUL.src"));
+
+var i;
+var rootFolder;
+var subfolders = ['Supervisor', 'Financials', 'AP-AR accounting', 'External', 'Sales',
+                    'Purchasing', 'Stock', 'Manufacturing', 'Common Data', 'Development',
+                    'Sage X3 Internals', 'Help-Desk', 'CRM activities', 'Fixed Assets',
+                    'Human Resources administration', 'Module Spe 1', 'Module Spe 2', 
+                    'Module Spe 3', 'Module Spe 4', 'Human Capital management']
+rootFolder = "C:\\WorkingFolder\\X3\\Istanbul\\Examples\\Polish\\"
+for (var j = 0; j < subfolders.length; j++)
+{
+    for (i=0; i<100; i++)
+    {
+        // Write coverage file for each source file
+        var name;
+        name = "ZISTANBUL" + i + ".src";
+        var x = makeJsonObject( rootFolder + "4GL\\" + subfolders[j] + "\\"+ name, 
+                                rootFolder + "4GL\\" + subfolders[j] + "\\"+ name);
+    
+        // console.log(x);
+        var fs = require('fs');
+
+        if (fs.existsSync(rootFolder + "4GL\\" + subfolders[j]) == false)
+        {
+            fs.mkdirSync(rootFolder + "4GL\\" + subfolders[j])
+        }
+
+        // Write corresponding 4GL source file
+        fs.copyFile(rootFolder + "ZISTANBUL.src", "./4GL/" + subfolders[j] + "/ZISTANBUL" + i + ".src", function(err) {
+            if(err) {
+                return console.log(err);
+            }
+        });        
+
+        if (fs.existsSync(rootFolder + "coverage\\4GL\\" + subfolders[j]) == false)
+        {
+            fs.mkdirSync(rootFolder + "coverage\\4GL\\" + subfolders[j])
+        }
+
+
+        fs.writeFile("./coverage/4GL/" + subfolders[j] + "/coverageZistanbul" + i + ".json", x, function(err) {
+            if(err) {
+                return console.log(err);
+            }
+            console.log("File was saved");
+        });          
+    }    
+}
+
+function ensureDirectoryExists(filePath){
+    var dirname = path.dirname(filePath);
+    if (fs.existsSync(dirname))
+    {
+        return true;
+    }
+    ensureDirectoryExists(dirname);
+    fs.mkdirSync(dirname);
+}
+
+
+
+function makeJsonObject(testName, fileName)
+{
+    // var o = {"C:\\WorkingFolder\\X3\\Istanbul\\Examples\\Polish\\ZISTANBUL.src":
+    var o = {[fileName]:
+        {
+            path:fileName,
+            s:{"1":1, "2": 1, "3": 0, "4":1, "5":1},
+            b:{"1":[0,1]},
+            f:{
+                
+            },
+
+            fnMap:{
+
+            },
+            statementMap:{
+                "1":{
+                    start:{
+                        line:2,
+                        column:0
+                    },
+                    end:{
+                        line:2,
+                        column:6
+                    }
+                },
+                "2":{
+                    start:{
+                        line:3,
+                        column:0
+                    },
+                    end:{
+                        line:3,
+                        column:7
+                    }
+                },
+                "3":{
+                    start:{
+                        line:3,
+                        column:8
+                    },
+                    end:{
+                        line:3,
+                        column:28
+                    }
+                },
+                "4":{
+                    start:{
+                        line:3,
+                        column:29
+                    },
+                    end:{
+                        line:3,
+                        column:58
+                    }
+                },
+                "5":{
+                    start:{
+                        line:3,
+                        column:59
+                    },
+                    end:{
+                        line:3,
+                        column:64
+                    }
+                }
+            },
+
+            branchMap:{
+                "1":{
+                    line:3,
+                    type:"if",
+                    locations:[
+                        {
+                            start:{line:3,column:0},
+                            end:{line:3,column:0}
+                    },
+                        {
+                            start:{line:3,column:0},
+                            end:{line:3,column:0}
+                    }            
+                    ]
+                }
+            }                 
+        }
+    };
+    
+
+    
+    // o.b = [];
+    // o.b.push({
+    //     "1":[1,0]
+    // })
+
+    return JSON.stringify(o,null,4);
+}
+
+
+function WriteJson(fileName, isMinimized, myObj)
+{
+    var fs = require("fs");
+    switch (isMinimized)
+    {
+        case true:
+            fs.writeFile("./coverage/" + fileName + ".json", JSON.stringify(myObj,null,4),(err) => {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                console.log("File has been created");
+            });
+
+        case false:
+            fs.writeFile("./" + fileName + ".json", JSON.stringify(myObj),(err) => {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                console.log("File has been created");
+            });
+    }
+}
+
+
+function makeHeader(fileName, path)
+{
+    var result = {fileName:{"path":path}};
+    return JSON.stringify(result);
+    
+}
+function makeBranchMap()
+{
+
+}
+
+function makeBranch()
+{
+
+}
+
+function makeStatementMap()
+{
+
+}
+
+function makeStatement()
+{
+
+}
+
+function makeFunctionMap()
+{
+
+}
+
+function makeFunction()
+{
+    
+}
+
+
 var sampleObject = {
     a: 1,
     b: 2,
@@ -260,35 +490,3 @@ var coverageJson = {
        }
     }
  }
-
-//WriteJson("someJson",false,sampleObject);
-WriteJson("coverage", true, coverageJson);
-
-
-function WriteJson(fileName, isMinimized, myObj)
-{
-    var fs = require("fs");
-    switch (isMinimized)
-    {
-        case true:
-            fs.writeFile("./coverage/" + fileName + ".json", JSON.stringify(myObj,null,4),(err) => {
-                if (err) {
-                    console.error(err);
-                    return;
-                }
-                console.log("File has been created");
-            });
-
-        case false:
-            fs.writeFile("./" + fileName + ".json", JSON.stringify(myObj),(err) => {
-                if (err) {
-                    console.error(err);
-                    return;
-                }
-                console.log("File has been created");
-            });
-    }
-}
-
-
-
