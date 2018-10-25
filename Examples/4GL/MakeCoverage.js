@@ -107,31 +107,31 @@ function makeJsonObject(testName, fileName)
                 "3":{
                     start:{
                         line:3,
-                        column:8
+                        column:7
                     },
                     end:{
                         line:3,
-                        column:28
+                        column:25
                     }
                 },
                 "4":{
                     start:{
                         line:3,
-                        column:29
+                        column:26
                     },
                     end:{
                         line:3,
-                        column:58
+                        column:55
                     }
                 },
                 "5":{
                     start:{
                         line:3,
-                        column:59
+                        column:56
                     },
                     end:{
                         line:3,
-                        column:64
+                        column:61
                     }
                 }
             },
