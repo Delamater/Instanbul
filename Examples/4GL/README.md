@@ -1,6 +1,6 @@
 For this example to work you must run the following:
 
-NPM install istanbul --save-dev
+- npm install istanbul --save-dev
 
 This will create your node_modules directory which is necessary for istanbul to execute the report. 
 
