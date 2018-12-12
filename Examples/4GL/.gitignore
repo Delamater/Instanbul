@@ -1,2 +1,4 @@
 coverage/lcov-report/
+coverage/TRT/*/*.json
+TRT/*/*.src
 /node_modules

@@ -5,7 +5,8 @@
     "main": "test.js",
     "scripts": {
       "test": "test.js",
-      "coverage": "istanbul cover test.js --include-all-sources --root ",
+      // "coverage": "istanbul cover test.js --include-all-sources --root ",
+      "coverage": "istanbul report",
       "showcoverage": "start coverage/lcov-report/index.html"
     },
     "keywords": [],
